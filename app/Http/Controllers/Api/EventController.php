@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -49,7 +50,7 @@ class EventController extends Controller
                 'start_time' => 'required|date',
                 'end_time' => 'required|date|after:start_time'
             ]),
-            'user_id' => 1
+            'user_id' => $request->user()->id
         ]);
 
         return new EventResource($event);

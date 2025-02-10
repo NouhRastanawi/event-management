@@ -12,6 +12,8 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::apiResource("events", EventController::class);
+
+Route::apiResource("events", EventController::class)->only(['index', 'show']);
+Route::apiResource("events", EventController::class)->middleware("auth:sanctum")->only(['store', 'update', 'destroy']);
 Route::apiResource('events.attendees', AttendeeController::class)
     ->scoped()->except(['update']);
